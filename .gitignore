@@ -1,0 +1,6 @@
+**/data
+db.sqlite3
+/data
+.compose/db/*
+.compose/web/*
+.env

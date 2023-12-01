@@ -1,0 +1,8 @@
+**/*.md
+**/*.yaml
+**/.git*
+**/Dockerfile
+**/.env*
+**/.docker*
+data
+**/data

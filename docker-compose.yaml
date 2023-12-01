@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  application:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile
+    environment:
+      - DJANGO_DB_HOST
+      - DJANGO_DB_NAME
+      - DJANGO_DB_USER
+      - DJANGO_DB_PASS
+      - DJANGO_DB_PORT
+      - DJANGO_DEBUG
+    volumes:
+      - ./data/uploads:/srv/www/app/media/uploads
+    depends_on:
+      - db
+    networks:
+      - django_app_network
+      - django_db_network
+  
+  db:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+    networks:
+      - django_db_network
+  
+  nginx:
+    image: nginxinc/nginx-unprivileged:1.20.0-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./deploy/nginx/nginx.conf.template:/etc/nginx/templates/default.conf.template
+    depends_on:
+      - db
+      - application
+    networks:
+      - django_app_network
+
+networks:
+  django_app_network:
+  django_db_network:
+

@@ -16,7 +16,9 @@ git clone https://github.com/Korvish/devops-sample-django-app
 ```shell
 mkdir -p data/uploads && chown 1000:1000 data/uploads
 ```
-
+</br>
+</br>
+Rename .env.example to .env
 </br>
 Install Docker and Compose plugin
 https://docs.docker.com/engine/install

@@ -18,7 +18,8 @@ mkdir -p data/uploads && chown 1000:1000 data/uploads
 ```
 </br>
 </br>
-Rename .env.example to .env
+<h5>Rename .env.example to .env</h5>
+</br>
 </br>
 Install Docker and Compose plugin
 https://docs.docker.com/engine/install
